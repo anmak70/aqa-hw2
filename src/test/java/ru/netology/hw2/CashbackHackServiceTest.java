@@ -1,5 +1,6 @@
 package ru.netology.hw2;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -13,6 +14,22 @@ class CashbackHackServiceTest {
         CashbackHackService cashbackHackService = new CashbackHackService();
         int actual = cashbackHackService.remain(amount);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldReturnExceptionIfAmountIs0() {
+
+        CashbackHackService cashbackHackService = new CashbackHackService();
+        int amount = 0;
+        assertThrows(IllegalArgumentException.class, () -> cashbackHackService.remain(amount));
+    }
+
+    @Test
+    void shouldReturnExceptionIfAmountIsNegative() {
+
+        CashbackHackService cashbackHackService = new CashbackHackService();
+        int amount = -1;
+        assertThrows(IllegalArgumentException.class, () -> cashbackHackService.remain(amount));
     }
 
 }
